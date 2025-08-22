@@ -1,0 +1,407 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Trusqual Books</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: white;
+      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+      transition: left 0.3s ease-in-out;
+      z-index: 1000;
+      padding: 80px 20px 20px;
+      overflow-y: auto;
+    }
+    
+    .mobile-menu.open {
+      left: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease-in-out;
+      z-index: 999;
+    }
+    
+    .overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Close button styles */
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+  </style>
+</head>
+<body class="m-0 p-0 font-sans">
+  <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <button class="close-btn" onclick="toggleMenu()">
+      <i class="fas fa-times"></i>
+    </button>
+    <ul class="space-y-6 text-black text-base">
+      <li>
+        <a href="#" class="bg-[#00020A] text-white px-4 py-2 rounded-md font-semibold block text-center">Home</a>
+      </li>
+      <li><a href="about.html" class="hover:underline block py-2">About Us</a></li>
+      <li><a href="services.html" class="hover:underline block py-2">Services</a></li>
+      <li><a href="blog.html" class="hover:underline block py-2">Blog</a></li>
+      <li><a href="contact.html" class="hover:underline block py-2">Contact Us</a></li>
+    </ul>
+
+    <div class="mt-12 border-t pt-6">
+      <h4 class="font-semibold text-black mb-3">Contact Info</h4>
+      <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>123 Business Plaza, Suite 456</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-phone-alt"></i>
+          <span>(555) 123-4567</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-envelope"></i>
+          <span>info@sterlingcpa.com</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+   
+  <nav class="flex justify-between items-center px-6 py-6 md:px-24">
+    <div class="text-black font-semibold text-lg">Trusqual Books</div>
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-black focus:outline-none" onclick="toggleMenu()">
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </div>
+    <ul class="hidden md:flex space-x-10 text-black text-sm font-normal">
+      <li>
+        <a href="#" class="bg-[#00020A] text-white px-4 py-2 rounded-md font-semibold">Home</a>
+      </li>
+      <li><a href="about.html" class="hover:underline">About Us</a></li>
+      <li><a href="services.html" class="hover:underline">Services</a></li>
+      <li><a href="blog.html" class="hover:underline">Blog</a></li>
+      <li><a href="contact.html" class="hover:underline">Contact Us</a></li>
+    </ul>
+  </nav>
+  <section
+    class="w-full py-20 px-6 text-center relative"
+    style="background-image: url('https://abacusnext.com/wp-content/uploads/2020/09/iStock-1085389362-1024x653.jpg'); background-size: cover; background-position: center;"
+  >
+    <h1 class="text-white text-4xl md:text-5xl font-normal max-w-5xl mx-auto leading-tight">
+      Welcome to TrusQualBooks
+    </h1>
+    <p class="text-white text-lg mt-6 max-w-3xl mx-auto">
+      We provide reliable accounting and bookkeeping services
+    </p>
+  </section>
+
+  <!--our services-->
+
+  <section class="max-w-7xl mx-auto px-4 py-12 text-center">
+    <h2 class="text-black text-xl font-normal mb-3">Our Services</h2>
+    <p class="text-gray-600 max-w-xl mx-auto mb-10 leading-relaxed">
+      We offer a full range of accounting and tax services to help you achieve your financial goals.
+    </p>
+    <div class="flex flex-col sm:flex-row justify-center gap-6 max-w-5xl mx-auto mb-10">
+      <div class="bg-white rounded-xl border border-gray-200 p-6 text-left flex-1 min-w-[250px]">
+        <p class="font-semibold text-black mb-1 text-lg">Tax Preparation</p>
+        <p class="text-gray-600 mb-4">Expert tax preparation for individuals and businesses</p>
+        <p class="text-black">Maximize your deductions and ensure compliance with current tax laws.</p>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-6 text-left flex-1 min-w-[250px]">
+        <p class="font-semibold text-black mb-1 text-lg">Bookkeeping</p>
+        <p class="text-gray-600 mb-4">Professional bookkeeping and financial record management</p>
+        <p class="text-black">Keep your financial records organized and up-to-date with our expert services.</p>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-6 text-left flex-1 min-w-[250px]">
+        <p class="font-semibold text-black mb-1 text-lg">Financial Planning</p>
+        <p class="text-gray-600 mb-4">Strategic financial planning and consulting services</p>
+        <p class="text-black">Plan for your financial future with our comprehensive consulting services.</p>
+      </div>
+    </div>
+    <button class="bg-[#000014] text-white font-semibold rounded-md px-5 py-2.5">
+      <a href="services.html">View All Services </a>
+    </button>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 py-20 text-center">
+    <h2 class="text-2xl font-normal mb-8">Our Software Capabilities</h2>
+    <p class="text-gray-600 mb-10 leading-relaxed">
+      We utilize a variety of software tools to enhance our services and ensure accuracy in our work.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div class="software-card p-6 bg-white rounded-lg shadow-lg transition-transform duration-500 ease-in-out transform hover:scale-105">
+        <i class="fas fa-calculator text-4xl text-blue-600 mb-4"></i>
+        <h3 class="font-semibold text-lg">Accounting Software</h3>
+        <p class="text-gray-600">Utilizing top accounting software for precise financial management.</p>
+      </div>
+      <div class="software-card p-6 bg-white rounded-lg shadow-lg transition-transform duration-500 ease-in-out transform hover:scale-105">
+        <i class="fas fa-file-invoice text-4xl text-blue-600 mb-4"></i>
+        <h3 class="font-semibold text-lg">Tax Preparation Tools</h3>
+        <p class="text-gray-600">Advanced tools for efficient and accurate tax preparation.</p>
+      </div>
+      <div class="software-card p-6 bg-white rounded-lg shadow-lg transition-transform duration-500 ease-in-out transform hover:scale-105">
+        <i class="fas fa-chart-line text-4xl text-blue-600 mb-4"></i>
+        <h3 class="font-semibold text-lg">Financial Planning Software</h3>
+        <p class="text-gray-600">Comprehensive software for strategic financial planning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- why choose us-->
+
+  <div class="max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center md:items-start gap-12">
+    <div class="max-w-xl">
+      <h2 class="text-2xl font-normal mb-8">
+        Why Choose Trusqual Books?
+      </h2>
+      <ul class="space-y-8">
+        <li class="flex gap-4">
+          <div class="flex-shrink-0 mt-1">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white">
+              <i class="fas fa-check"></i>
+            </span>
+          </div>
+          <div>
+            <p class="font-semibold text-black">
+              Expert Knowledge
+            </p>
+            <p class="text-gray-600 leading-relaxed max-w-md">
+              Our certified public accountants stay current with the latest tax laws and regulations.
+            </p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <div class="flex-shrink-0 mt-1">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white">
+              <i class="fas fa-check"></i>
+            </span>
+          </div>
+          <div>
+            <p class="font-semibold text-black">
+              Personalized Service
+            </p>
+            <p class="text-gray-600 leading-relaxed max-w-md">
+              We provide tailored solutions that meet your specific financial needs and goals.
+            </p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <div class="flex-shrink-0 mt-1">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white">
+              <i class="fas fa-check"></i>
+            </span>
+          </div>
+          <div>
+            <p class="font-semibold text-black">
+              Reliable Support
+            </p>
+            <p class="text-gray-600 leading-relaxed max-w-md">
+              Count on us for year-round support and guidance on all your financial matters.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-shrink-0 w-full max-w-lg rounded-lg overflow-hidden">
+      <img alt="Person holding tax documents and calculator on white wooden table" class="w-full h-auto rounded-lg object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/dbb770db-fd18-454d-ac9b-9a8482aca802.jpg" width="600"/>
+    </div>
+  </div>
+
+  <!-- Counters Section -->
+  <section class="max-w-7xl mx-auto px-6 py-20 bg-gray-50">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center max-w-5xl mx-auto">
+      <div>
+        <p class="text-4xl font-bold text-blue-600" id="clientsCount">0+</p>
+        <p class="mt-2 text-gray-700 font-semibold">Clients</p>
+      </div>
+      <div>
+        <p class="text-4xl font-bold text-blue-600" id="experienceCount">0+</p>
+        <p class="mt-2 text-gray-700 font-semibold">Experience</p>
+      </div>
+      <div>
+        <p class="text-4xl font-bold text-blue-600" id="financialCount">0+</p>
+        <p class="mt-2 text-gray-700 font-semibold">Financial Solutions</p>
+      </div>
+      <div>
+        <p class="text-4xl font-bold text-blue-600" id="qualifiedCount">0+</p>
+        <p class="mt-2 text-gray-700 font-semibold">Qualified Professionals</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer-->
+
+  <footer class="max-w-7xl mx-auto px-6 py-12 bg-[#0c1524] text-[#a0aec0] m-0 p-0">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Trusqual Books</h3>
+        <p class="text-[#a0aec0] text-sm leading-relaxed max-w-[280px]">
+          Providing trusted accounting and tax services for over 25 years. Your financial success is our priority.
+        </p>
+        <div class="flex space-x-3 mt-4 text-[#a0aec0] text-lg">
+          <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn" class="hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="font-semibold hover:text-white">Home</a></li>
+          <li><a href="about.html" class="font-semibold hover:text-white">About Us</a></li>
+          <li><a href="services.html" class="font-semibold hover:text-white">Services</a></li>
+          <li><a href="blog.html" class="font-semibold hover:text-white">Blog</a></li>
+          <li><a href="contact.html" class="font-semibold hover:text-white">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-[#a0aec0] mb-3 text-sm">Services</h3>
+        <ul class="space-y-2 text-sm">
+          <li>Tax Preparation</li>
+          <li>Bookkeeping</li>
+          <li>Business Consulting</li>
+          <li>Audit &amp; Assurance</li>
+          <li>Payroll Services</li>
+          <li>Financial Planning</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Contact Info</h3>
+        <ul class="space-y-3 text-sm text-[#a0aec0]">
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-map-marker-alt text-[#a0aec0]"></i>
+            <span>123 Business Plaza, Suite 456</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-phone-alt text-[#a0aec0]"></i>
+            <a href="tel:+919586545067">
+              <span>+91 9586545067</span>
+            </a>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-envelope text-[#a0aec0]"></i>
+            <a href="mailto:meet@trusqualbooks.com">
+              <span>meet@trusqualbooks.com</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr class="border-t border-[#1f2937] mb-6" />
+    <div class="flex flex-col sm:flex-row justify-between text-xs text-[#a0aec0]">
+      <div>© 2024 Trusqual Books. All rights reserved.</div>
+      <div class="flex space-x-6 mt-3 sm:mt-0">
+        <a href="#" class="hover:text-white">Privacy Policy</a>
+        <a href="#" class="hover:text-white">Terms of Service</a>
+        <a href="#" class="hover:text-white">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+      
+      menu.classList.toggle('open');
+      overlay.classList.toggle('open');
+      
+      // Prevent body scrolling when menu is open
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+      const menuToggle = document.getElementById('menu-toggle');
+      
+      if (menu.classList.contains('open') && 
+          !menu.contains(e.target) && 
+          !menuToggle.contains(e.target)) {
+        toggleMenu();
+      }
+    });
+
+    // Animate counters when they come into view with plus sign
+    function animateCount(id, target, duration) {
+      const element = document.getElementById(id);
+      let start = 0;
+      const increment = target / (duration / 16);
+      function update() {
+        start += increment;
+        if (start < target) {
+          element.textContent = Math.floor(start) + "+";
+          requestAnimationFrame(update);
+        } else {
+          element.textContent = target.toLocaleString() + "+";
+        }
+      }
+      update();
+    }
+
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom >= 0
+      );
+    }
+
+    function runCounters() {
+      const counters = [
+        { id: 'clientsCount', target: 1200 },
+        { id: 'experienceCount', target: 25 },
+        { id: 'financialCount', target: 350 },
+        { id: 'qualifiedCount', target: 40 }
+      ];
+      counters.forEach(({id, target}) => {
+        const el = document.getElementById(id);
+        if (el && !el.classList.contains('counted') && isInViewport(el)) {
+          animateCount(id, target, 2000);
+          el.classList.add('counted');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', runCounters);
+    window.addEventListener('load', runCounters);
+  </script>
+</body>
+</html>

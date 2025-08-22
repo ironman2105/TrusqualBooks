@@ -1,0 +1,446 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Trusqual Books Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <style>
+    
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: white;
+      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+      transition: left 0.3s ease-in-out;
+      z-index: 1000;
+      padding: 80px 20px 20px;
+      overflow-y: auto;
+    }
+    
+    .mobile-menu.open {
+      left: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease-in-out;
+      z-index: 999;
+    }
+    
+    .overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Close button styles */
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+  </style>
+</head>
+<body class="bg-white text-black font-sans">
+  <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <button class="close-btn" onclick="toggleMenu()">
+      <i class="fas fa-times"></i>
+    </button>
+    <ul class="space-y-6 text-black text-base">
+      <li>
+        <a href="index.html" class="hover:underline block py-2">Home</a>
+      </li>
+      <li><a href="about.html" class="hover:underline block py-2">About Us</a></li>
+      <li><a href="#" class="bg-[#00020A] text-white px-4 py-2 rounded-md font-semibold block text-center">Services</a></li>
+      <li><a href="blog.html" class="hover:underline block py-2">Blog</a></li>
+      <li><a href="contact.html" class="hover:underline block py-2">Contact Us</a></li>
+    </ul>
+
+    <div class="mt-12 border-t pt-6">
+      <h4 class="font-semibold text-black mb-3">Contact Info</h4>
+      <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>123 Business Plaza, Suite 456</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-phone-alt"></i>
+          <span>(555) 123-4567</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-envelope"></i>
+          <span>info@sterlingcpa.com</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+   
+  <nav class="flex justify-between items-center px-6 py-6 md:px-24">
+    <div class="text-black font-semibold text-lg">Trusqual Books</div>
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-black focus:outline-none" onclick="toggleMenu()">
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </div>
+    <ul class="hidden md:flex space-x-10 text-black text-sm font-normal">
+      <li>
+        <a href="index.html" class="hover:underline">Home</a>
+      </li>
+      <li><a href="about.html" class="hover:underline">About Us</a></li>
+      <li><a href="#" class="bg-[#00020A] text-white px-4 py-2 rounded-md font-semibold">Services</a></li>
+      <li><a href="blog.html" class="hover:underline">Blog</a></li>
+      <li><a href="contact.html" class="hover:underline">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-20">
+    <h1 class="text-3xl font-normal text-center mb-4">Our Services</h1>
+    <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+     Trusqual Books offers a comprehensive range of accounting, tax, and financial services designed to meet your unique needs and help you achieve your financial goals.
+    </p>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <section class="border border-gray-200 rounded-lg p-6 flex-1">
+        <h2 class="font-semibold mb-2 text-sm">Tax Preparation &amp; Planning</h2>
+        <p class="text-gray-500 mb-6 text-sm leading-relaxed">
+          Comprehensive tax services for individuals and businesses
+        </p>
+        <ul class="space-y-2 text-gray-600 text-sm">
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Individual tax returns
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Business tax returns
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Tax planning strategies
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> IRS representation
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Amended returns
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Multi-state filings
+          </li>
+        </ul>
+      </section>
+
+      <section class="border border-gray-200 rounded-lg p-6 flex-1">
+        <h2 class="font-semibold mb-2 text-sm">Bookkeeping Services</h2>
+        <p class="text-gray-500 mb-6 text-sm leading-relaxed">
+          Professional bookkeeping and financial record management
+        </p>
+        <ul class="space-y-2 text-gray-600 text-sm">
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Monthly bookkeeping
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Accounts payable/receivable
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Bank reconciliations
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Financial statements
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Payroll processing
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> QuickBooks setup &amp; training
+          </li>
+        </ul>
+      </section>
+
+      <section class="border border-gray-200 rounded-lg p-6 flex-1">
+        <h2 class="font-semibold mb-2 text-sm">Business Consulting</h2>
+        <p class="text-gray-500 mb-6 text-sm leading-relaxed">
+          Strategic guidance to help your business grow and succeed
+        </p>
+        <ul class="space-y-2 text-gray-600 text-sm">
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Business formation
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Financial analysis
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Cash flow management
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Budgeting &amp; forecasting
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Performance metrics
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Exit planning
+          </li>
+        </ul>
+      </section>
+
+      <section class="border border-gray-200 rounded-lg p-6 flex-1">
+        <h2 class="font-semibold mb-2 text-sm">Audit & Assurance</h2>
+        <p class="text-gray-500 mb-6 text-sm leading-relaxed">
+          Independent audit and review services for businesses
+        </p>
+        <ul class="space-y-2 text-gray-600 text-sm">
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Financial statement audits
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Review engagements
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Compilation services
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Internal controls assessment
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Compliance audits
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Non-profit audits
+          </li>
+        </ul>
+      </section>
+
+       <section class="border border-gray-200 rounded-lg p-6 flex-1">
+        <h2 class="font-semibold mb-2 text-sm">Payroll Services</h2>
+        <p class="text-gray-500 mb-6 text-sm leading-relaxed">
+          Complete payroll management and compliance solutions
+        </p>
+        <ul class="space-y-2 text-gray-600 text-sm">
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Payroll processing
+
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Tax filing & payments
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Direct deposit
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Employee self-service
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Year-end reporting
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Multi-state compliance
+          </li>
+        </ul>
+      </section>
+
+       <section class="border border-gray-200 rounded-lg p-6 flex-1">
+        <h2 class="font-semibold mb-2 text-sm">Financial Planning</h2>
+        <p class="text-gray-500 mb-6 text-sm leading-relaxed">
+          Personal and business financial planning services
+        </p>
+        <ul class="space-y-2 text-gray-600 text-sm">
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Retirement planning
+
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Investment strategies
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Risk management
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Estate planning
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Insurance analysis
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Wealth preservation
+          </li>
+        </ul>
+      </section>
+
+       <section class="border border-gray-200 rounded-lg p-6 flex-1">
+        <h2 class="font-semibold mb-2 text-sm">Payroll Services</h2>
+        <p class="text-gray-500 mb-6 text-sm leading-relaxed">
+          Complete payroll management and compliance solutions
+        </p>
+        <ul class="space-y-2 text-gray-600 text-sm">
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Payroll processing
+
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Tax filing & payments
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Direct deposit
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Employee self-service
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i> Year-end reporting
+          <li class="flex items-center">
+            <i class="fas fa-check text-blue-600 mr-2 text-xs"></i>Multi-state compliance
+          </li>
+        </ul>
+      </section>
+    </div>
+
+     <section class="max-w-7xl mx-auto my-10 px-6">
+    <div class="bg-gray-50 rounded-lg p-8 text-center">
+      <h2 class="text-xl font-normal mb-2">Industries We Serve</h2>
+      <p class="text-gray-600 mb-8 max-w-xl mx-auto">
+        Our team has extensive experience working with clients across various industries.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div class="bg-white rounded-md py-3 px-6">Healthcare</div>
+        <div class="bg-white rounded-md py-3 px-6">Real Estate</div>
+        <div class="bg-white rounded-md py-3 px-6">Construction</div>
+        <div class="bg-white rounded-md py-3 px-6">Technology</div>
+        <div class="bg-white rounded-md py-3 px-6">Manufacturing</div>
+        <div class="bg-white rounded-md py-3 px-6">Retail</div>
+        <div class="bg-white rounded-md py-3 px-6">Non-Profit</div>
+        <div class="bg-white rounded-md py-3 px-6">Professional Services</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6">
+    <div class="bg-blue-600 rounded-lg p-10 text-center text-white max-w-4xl mx-auto">
+      <h3 class="text-2xl font-normal mb-4">Ready to Get Started?</h3>
+      <p class="mb-8 max-w-xl mx-auto">
+        Contact us today to discuss your accounting and tax needs. We'll provide a complimentary consultation to understand your situation and recommend the best solutions.
+      </p>
+      <form class="flex justify-center gap-4 flex-wrap sm:flex-nowrap">
+        <button
+          type="button"
+          class="bg-gray-200 text-black font-semibold rounded-md px-5 py-2"
+        >
+          Schedule Consultation
+        </button>
+        
+      </form>
+    </div>
+  </section>
+
+  </main>
+  
+
+  <!-- footer-->
+
+   <footer class="max-w-7xl mx-auto px-6 py-12 bg-[#0c1524] text-[#a0aec0] m-0 p-0">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Trusqual Books</h3>
+        <p class="text-[#a0aec0] text-sm leading-relaxed max-w-[280px]">
+          Providing trusted accounting and tax services for over 25 years. Your financial success is our priority.
+        </p>
+        <div class="flex space-x-3 mt-4 text-[#a0aec0] text-lg">
+          <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn" class="hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="font-semibold hover:text-white">Home</a></li>
+          <li><a href="about.html" class="font-semibold hover:text-white">About Us</a></li>
+          <li><a href="#" class="font-semibold hover:text-white">Services</a></li>
+          <li><a href="blog.html" class="font-semibold hover:text-white">Blog</a></li>
+          <li><a href="contact.html" class="font-semibold hover:text-white">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-[#a0aec0] mb-3 text-sm">Services</h3>
+        <ul class="space-y-2 text-sm">
+          <li>Tax Preparation</li>
+          <li>Bookkeeping</li>
+          <li>Business Consulting</li>
+          <li>Audit &amp; Assurance</li>
+          <li>Payroll Services</li>
+          <li>Financial Planning</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Contact Info</h3>
+        <ul class="space-y-3 text-sm text-[#a0aec0]">
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-map-marker-alt text-[#a0aec0]"></i>
+            <span>123 Business Plaza, Suite 456</span>
+          </li>
+           <li class="flex items-center space-x-2">
+            <i class="fas fa-phone-alt text-[#a0aec0]"></i>
+            <a href="tel:+919586545067">
+            <span>+91 9586545067</span> </a>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-envelope text-[#a0aec0]"></i>
+            <a href="mailto:meet@trusqualbooks.com">
+            <span>meet@trusqualbooks.com</span> </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr class="border-t border-[#1f2937] mb-6" />
+    <div class="flex flex-col sm:flex-row justify-between text-xs text-[#a0aec0]">
+      <div>© 2024 Trusqual Books. All rights reserved.</div>
+      <div class="flex space-x-6 mt-3 sm:mt-0">
+        <a href="#" class="hover:text-white">Privacy Policy</a>
+        <a href="#" class="hover:text-white">Terms of Service</a>
+        <a href="#" class="hover:text-white">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+   <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+      
+      menu.classList.toggle('open');
+      overlay.classList.toggle('open');
+      
+      // Prevent body scrolling when menu is open
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+      const menuToggle = document.getElementById('menu-toggle');
+      
+      if (menu.classList.contains('open') && 
+          !menu.contains(e.target) && 
+          !menuToggle.contains(e.target)) {
+        toggleMenu();
+      }
+    });
+  </script>
+</body>
+</html>

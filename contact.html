@@ -1,0 +1,432 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Contact Us - Trusqual Books</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <style>
+    
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: white;
+      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+      transition: left 0.3s ease-in-out;
+      z-index: 1000;
+      padding: 80px 20px 20px;
+      overflow-y: auto;
+    }
+    
+    .mobile-menu.open {
+      left: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease-in-out;
+      z-index: 999;
+    }
+    
+    .overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Close button styles */
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+  </style>
+</head>
+<body class="bg-white text-black font-sans">
+ <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <button class="close-btn" onclick="toggleMenu()">
+      <i class="fas fa-times"></i>
+    </button>
+    <ul class="space-y-6 text-black text-base">
+      <li>
+        <a href="index.html" class="hover:underline block py-2">Home</a>
+      </li>
+      <li><a href="about.html" class="hover:underline block py-2">About Us</a></li>
+      <li><a href="services.html" class="hover:underline block py-2">Services</a></li>
+      <li><a href="blog.html" class="hover:underline block py-2">Blog</a></li>
+      <li><a href="#" class="bg-[#00020A] text-white px-4 py-2 rounded-md font-semibold block text-center">Contact Us</a></li>
+    </ul>
+
+    <div class="mt-12 border-t pt-6">
+      <h4 class="font-semibold text-black mb-3">Contact Info</h4>
+      <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>123 Business Plaza, Suite 456</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-phone-alt"></i>
+          <span>(555) 123-4567</span>
+        </li>
+        <li class="flex items-center space-x-2">
+          <i class="fas fa-envelope"></i>
+          <span>info@sterlingcpa.com</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+   
+  <nav class="flex justify-between items-center px-6 py-6 md:px-24">
+    <div class="text-black font-semibold text-lg">Trusqual Books</div>
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-black focus:outline-none" onclick="toggleMenu()">
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </div>
+    <ul class="hidden md:flex space-x-10 text-black text-sm font-normal">
+      <li>
+        <a href="index.html" class="hover:underline">Home</a>
+      </li>
+      <li><a href="about.html" class="hover:underline">About Us</a></li>
+      <li><a href="services.html" class="hover:underline">Services</a></li>
+      <li><a href="blog.html" class="hover:underline">Blog</a></li>
+      <li><a href="#" class="bg-[#00020A] text-white px-4 py-2 rounded-md font-semibold">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-6 py-12">
+    <section class="text-center max-w-3xl mx-auto mb-12">
+      <h1 class="text-2xl font-normal mb-4">Contact Us</h1>
+      <p class="text-gray-600 text-base leading-relaxed">
+        Ready to take control of your finances? Contact Trusqual Books today for
+        a complimentary consultation. We're here to help you succeed.
+      </p>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+      <form
+        class="bg-white border border-gray-100 rounded-xl p-6 space-y-6"
+        aria-label="Send Us a Message Form"
+      >
+        <div>
+          <p class="font-semibold text-sm mb-1">Send Us a Message</p>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Fill out the form below and we'll get back to you within 24 hours.
+          </p>
+        </div>
+
+        <div class="flex space-x-4">
+          <div class="flex-1">
+            <label
+              for="firstName"
+              class="block text-xs font-semibold mb-1"
+              >First Name</label
+            >
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              class="w-full rounded-md bg-gray-100 border border-transparent px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder=""
+            />
+          </div>
+          <div class="flex-1">
+            <label
+              for="lastName"
+              class="block text-xs font-semibold mb-1"
+              >Last Name</label
+            >
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              class="w-full rounded-md bg-gray-100 border border-transparent px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder=""
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-xs font-semibold mb-1">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="w-full rounded-md bg-gray-100 border border-transparent px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder=""
+          />
+        </div>
+
+        <div>
+          <label
+            for="phone"
+            class="block text-xs font-semibold mb-1"
+            >Phone Number</label
+          >
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            class="w-full rounded-md bg-gray-100 border border-transparent px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder=""
+          />
+        </div>
+
+        <div>
+          <label
+            for="company"
+            class="block text-xs font-semibold mb-1"
+            >Company (Optional)</label
+          >
+          <input
+            id="company"
+            name="company"
+            type="text"
+            class="w-full rounded-md bg-gray-100 border border-transparent px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder=""
+          />
+        </div>
+
+        <div>
+          <label
+            for="serviceInterest"
+            class="block text-xs font-semibold mb-1"
+            >Service Interest</label
+          >
+          <select
+            id="serviceInterest"
+            name="serviceInterest"
+            class="w-full rounded-md bg-white border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option selected disabled>Select a service</option>
+            <option>Tax Preparation</option>
+            <option>Bookkeeping</option>
+            <option>Financial Planning</option>
+            <option>Business Consulting</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <label
+            for="message"
+            class="block text-xs font-semibold text-gray-900 mb-1"
+            >Message</label
+          >
+          <textarea
+            id="message"
+            rows="4"
+            class="w-full rounded-md bg-gray-100 border border-transparent px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 resize-none"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-black text-white font-semibold text-sm rounded-md py-2 hover:bg-gray-900 transition"
+        >
+          Send Message
+        </button>
+      </form>
+
+<!-- Right info container -->
+      <div class="flex-1 flex flex-col gap-8 max-w-xl mx-auto lg:mx-0">
+        <!-- Office Information -->
+        <section
+          class="bg-white border border-gray-200 rounded-xl p-6"
+          aria-label="Office Information"
+        >
+          <p class="text-gray-900 mb-4">Office Information</p>
+          <ul class="space-y-4 text-gray-700 text-sm">
+            <li class="flex gap-3">
+              <span class="text-indigo-600 mt-1">
+                <i class="fas fa-map-marker-alt"></i>
+              </span>
+              <div>
+                <p class="font-semibold text-gray-900">Address</p>
+                <p>123 Business Plaza, Suite 456</p>
+                <p>Downtown City, ST 12345</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-indigo-600 mt-1">
+                <i class="fas fa-phone-alt"></i>
+              </span>
+              <div>
+                <p class="font-semibold text-gray-900">Phone</p>
+                <p>+91 9586545067</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-indigo-600 mt-1">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <div>
+                <p class="font-semibold text-gray-900">Email</p>
+                <p>meet@trusqualbooks.com</p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-indigo-600 mt-1">
+                <i class="fas fa-clock"></i>
+              </span>
+              <div>
+                <p class="font-semibold text-gray-900">Office Hours</p>
+                <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                <p>Saturday: 9:00 AM - 2:00 PM</p>
+                <p>Sunday: Closed</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Quick Contact -->
+        <section
+          class="bg-white border border-gray-200 rounded-xl p-6"
+          aria-label="Quick Contact"
+        >
+          <p class="font-semibold text-gray-900 mb-1">Quick Contact</p>
+          <p class="text-gray-500 mb-4 text-sm">
+            Need immediate assistance? Use one of these quick contact options.
+          </p>
+          <div class="flex flex-col gap-3">
+            <button
+              type="button"
+              class="flex items-center gap-3 border border-gray-300 rounded-md py-2 px-4 text-sm text-gray-900 hover:bg-gray-50 transition"
+            >
+              <i class="fas fa-phone-alt"></i>
+              <span class="font-semibold">Call +91 9586545067</span>
+            </button>
+            <button
+              type="button"
+              class="flex items-center gap-3 border border-gray-300 rounded-md py-2 px-4 text-sm text-gray-900 hover:bg-gray-50 transition"
+            >
+              <i class="fas fa-calendar-alt"></i>
+              <span class="font-semibold">Schedule Appointment</span>
+            </button>
+            <button
+              type="button"
+              class="flex items-center gap-3 border border-gray-300 rounded-md py-2 px-4 text-sm text-gray-900 hover:bg-gray-50 transition"
+            >
+              <i class="fas fa-envelope"></i>
+              <span class="font-semibold">Email Us</span>
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+      
+    </section>
+  </main>
+  <!-- footer-->
+
+   <footer class="max-w-7xl mx-auto px-6 py-12 bg-[#0c1524] text-[#a0aec0] m-0 p-0">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Trusqual Books</h3>
+        <p class="text-[#a0aec0] text-sm leading-relaxed max-w-[280px]">
+          Providing trusted accounting and tax services for over 25 years. Your financial success is our priority.
+        </p>
+        <div class="flex space-x-3 mt-4 text-[#a0aec0] text-lg">
+          <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn" class="hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="font-semibold hover:text-white">Home</a></li>
+          <li><a href="about.html" class="font-semibold hover:text-white">About Us</a></li>
+          <li><a href="services.html" class="font-semibold hover:text-white">Services</a></li>
+          <li><a href="blog.html" class="font-semibold hover:text-white">Blog</a></li>
+          <li><a href="#" class="font-semibold hover:text-white">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-[#a0aec0] mb-3 text-sm">Services</h3>
+        <ul class="space-y-2 text-sm">
+          <li>Tax Preparation</li>
+          <li>Bookkeeping</li>
+          <li>Business Consulting</li>
+          <li>Audit &amp; Assurance</li>
+          <li>Payroll Services</li>
+          <li>Financial Planning</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Contact Info</h3>
+        <ul class="space-y-3 text-sm text-[#a0aec0]">
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-map-marker-alt text-[#a0aec0]"></i>
+            <span>123 Business Plaza, Suite 456</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-phone-alt text-[#a0aec0]"></i>
+            <a href="tel:+919586545067">
+            <span>+91 9586545067</span> </a>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-envelope text-[#a0aec0]"></i>
+            <a href="mailto:meet@trusqualbooks.com">
+            <span>meet@trusqualbooks.com</span> </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr class="border-t border-[#1f2937] mb-6" />
+    <div class="flex flex-col sm:flex-row justify-between text-xs text-[#a0aec0]">
+      <div>© 2024 Trusqual Books. All rights reserved.</div>
+      <div class="flex space-x-6 mt-3 sm:mt-0">
+        <a href="#" class="hover:text-white">Privacy Policy</a>
+        <a href="#" class="hover:text-white">Terms of Service</a>
+        <a href="#" class="hover:text-white">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+   <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+      
+      menu.classList.toggle('open');
+      overlay.classList.toggle('open');
+      
+      // Prevent body scrolling when menu is open
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+      const menuToggle = document.getElementById('menu-toggle');
+      
+      if (menu.classList.contains('open') && 
+          !menu.contains(e.target) && 
+          !menuToggle.contains(e.target)) {
+        toggleMenu();
+      }
+    });
+  </script>
+</body>
+</html>

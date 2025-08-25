@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Sterling CPA Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"/>
+  <style>
+    body { font-family: "Inter", sans-serif; }
+
+    /* Mobile slide-in menu */
+    .mobile-menu { position: fixed; top: 0; left: -100%; width: 80%; max-width: 300px; height: 100vh; background: #fff; box-shadow: 4px 0 10px rgba(0,0,0,.1); transition: left .3s ease-in-out; z-index: 1000; padding: 80px 20px 20px; overflow-y: auto; }
+    .mobile-menu.open { left: 0; }
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); opacity: 0; visibility: hidden; transition: all .3s ease-in-out; z-index: 999; }
+    .overlay.open { opacity: 1; visibility: visible; }
+    .close-btn { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #333; }
+
+    /* Cards */
+    .blog-card { transition: transform .3s ease, box-shadow .3s ease; }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04); }
+    .read-more-btn { transition: transform .3s ease; }
+    .read-more-btn:hover { transform: translateX(5px); }
+
+    /* Detail fade-in */
+    .fade-in { animation: fadeIn .4s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Expandable content helper (not used but handy) */
+    .blog-content { max-height: 0; overflow: hidden; transition: max-height .5s ease; }
+    .blog-content.expanded { max-height: 2000px; }
+
+    /* Responsive tweaks for filter buttons */
+    @media (max-width: 640px) {
+      nav.filters > button { margin-bottom: .75rem; width: 100%; max-width: 300px; }
+      nav.filters { gap: .55rem; }
+    }
+  </style>
+</head>
+<body class="bg-white text-black">
+  <!-- Overlay for mobile menu -->
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+
+  <!-- Mobile Menu -->
+  <aside id="mobile-menu" class="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="close-btn" aria-label="Close menu" onclick="toggleMenu(false)">
+      <i class="fas fa-times"></i>
+    </button>
+    <ul class="space-y-6 text-black text-base">
+      <li><a href="#top" class="hover:underline mobile-link">Home</a></li>
+      <li><a href="#about" class="hover:underline block py-2 mobile-link">About Us</a></li>
+      <li><a href="#services" class="hover:underline block py-2 mobile-link">Services</a></li>
+      <li><a href="#" class="bg-[#00020A] text-white px-4 py-2 rounded-md font-semibold block text-center mobile-link">Blog</a></li>
+      <li><a href="#contact" class="hover:underline block py-2 mobile-link">Contact Us</a></li>
+    </ul>
+
+    <div class="mt-12 border-t pt-6">
+      <h4 class="font-semibold text-black mb-3">Contact Info</h4>
+      <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-center space-x-2"><i class="fas fa-map-marker-alt"></i><span>123 Business Plaza, Suite 456</span></li>
+        <li class="flex items-center space-x-2"><i class="fas fa-phone-alt"></i><a href="tel:+15551234567" class="hover:underline">(555) 123-4567</a></li>
+        <li class="flex items-center space-x-2"><i class="fas fa-envelope"></i><a href="mailto:info@sterlingcpa.com" class="hover:underline">info@sterlingcpa.com</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Top Navigation -->
+  <header id="top" class="px-6 py-6 md:px-24">
+    <nav class="flex justify-between items-center">
+      <a href="#top" class="text-black font-semibold text-lg">Sterling CPA</a>
+      <div class="md:hidden">
+        <button id="menu-toggle" class="text-black focus:outline-none" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars fa-lg"></i></button>
+      </div>
+      <ul class="hidden md:flex space-x-10 text-black text-sm font-normal">
+        <li><a href="#top" class="hover:underline">Home</a></li>
+        <li><a href="#about" class="hover:underline">About Us</a></li>
+        <li><a href="#services" class="hover:underline">Services</a></li>
+        <li><a href="#" class="bg-[#00020A] text-white px-4 py-2 rounded-md font-semibold block text-center">Blog</a></li>
+        <li><a href="#contact" class="hover:underline">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-4 md:mt-8">
+    <h1 class="text-2xl sm:text-3xl font-semibold text-center mb-3">Trusqual Books Blog</h1>
+    <p class="text-center text-gray-600 max-w-2xl mx-auto mb-10 text-base sm:text-lg leading-relaxed">Stay informed with the latest tax tips, financial insights, and business advice from our team of certified public accountants.</p>
+
+    <!-- Filters -->
+    <nav class="filters flex justify-center space-x-3 mb-10 flex-wrap" aria-label="Blog filters">
+      <button data-filter="all" class="filter-btn bg-[#030319] text-white rounded-md px-4 py-2 font-semibold text-sm" aria-pressed="true">All</button>
+      <button data-filter="Tax Planning" class="filter-btn border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" aria-pressed="false">Tax Planning</button>
+      <button data-filter="Business Tax" class="filter-btn border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" aria-pressed="false">Business Tax</button>
+      <button data-filter="Financial Planning" class="filter-btn border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" aria-pressed="false">Financial Planning</button>
+      <button data-filter="Bookkeeping" class="filter-btn border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" aria-pressed="false">Bookkeeping</button>
+      <button data-filter="Estate Planning" class="filter-btn border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" aria-pressed="false">Estate Planning</button>
+    </nav>
+
+    <!-- Blog Listing -->
+    <section id="blog-listing" class="space-y-8">
+      <!-- Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Post 1 -->
+        <article class="blog-post blog-card bg-white rounded-xl shadow-md overflow-hidden" data-category="Tax Planning" data-id="1">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1554224155-3a5898774627?q=80&w=1200&auto=format&fit=crop" alt="CPA reviewing tax documents on a desk with a calculator" class="w-full h-48 object-cover"/>
+            <div class="absolute top-4 left-4"><span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Tax Planning</span></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-sm text-gray-500 mb-3">
+              <span>Priya Shah, CPA</span><span class="mx-2">•</span><span>Apr 05, 2024</span><span class="mx-2">•</span><span>7 min read</span>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">FY 2024–25: Last‑Minute Tax Moves Before 31 March</h3>
+            <p class="text-gray-600 mb-4">Use these actionable deductions and timing tactics to legally reduce your tax outgo before year‑end—80C, HRA, capital‑gains set‑off, and more.</p>
+            <button class="read-more-btn text-blue-600 font-semibold flex items-center group" aria-label="Read more about FY 2024–25 last minute tax moves">Read More<i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></button>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="blog-post blog-card bg-white rounded-xl shadow-md overflow-hidden" data-category="Business Tax" data-id="2">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1551281044-8b5e5972c66a?q=80&w=1200&auto=format&fit=crop" alt="Laptop with charts representing GST filings" class="w-full h-48 object-cover"/>
+            <div class="absolute top-4 left-4"><span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Business Tax</span></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-sm text-gray-500 mb-3"><span>Arun Mehta</span><span class="mx-2">•</span><span>Mar 12, 2024</span><span class="mx-2">•</span><span>9 min read</span></div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">GST Health Check: 8 Red Flags That Trigger Notices</h3>
+            <p class="text-gray-600 mb-4">From ITC mismatches to e‑invoice gaps—how to audit your GST data monthly and avoid penalties.</p>
+            <button class="read-more-btn text-blue-600 font-semibold flex items-center group" aria-label="Read more about GST health check">Read More<i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></button>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="blog-post blog-card bg-white rounded-xl shadow-md overflow-hidden" data-category="Financial Planning" data-id="3">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop" alt="Couple reviewing financial goals with a planner" class="w-full h-48 object-cover"/>
+            <div class="absolute top-4 left-4"><span class="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Financial Planning</span></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-sm text-gray-500 mb-3"><span>Anita Nair, CFP®</span><span class="mx-2">•</span><span>Feb 20, 2024</span><span class="mx-2">•</span><span>8 min read</span></div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Goal‑Based Investing: A Simple Framework That Works</h3>
+            <p class="text-gray-600 mb-4">Bucket your money by time‑horizon and risk. A practical plan for emergency, short‑term, and long‑term goals.</p>
+            <button class="read-more-btn text-blue-600 font-semibold flex items-center group" aria-label="Read more about goal-based investing">Read More<i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></button>
+          </div>
+        </article>
+
+        <!-- Post 4 -->
+        <article class="blog-post blog-card bg-white rounded-xl shadow-md overflow-hidden" data-category="Bookkeeping" data-id="4">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop" alt="Bookkeeper reconciling accounts with receipts and laptop" class="w-full h-48 object-cover"/>
+            <div class="absolute top-4 left-4"><span class="bg-yellow-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Bookkeeping</span></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-sm text-gray-500 mb-3"><span>Megha Rao</span><span class="mx-2">•</span><span>Jan 28, 2024</span><span class="mx-2">•</span><span>6 min read</span></div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Monthly Close Checklist for Small Businesses</h3>
+            <p class="text-gray-600 mb-4">A step‑by‑step close—from bank reconciliation to deferred revenue—that keeps your books audit‑ready.</p>
+            <button class="read-more-btn text-blue-600 font-semibold flex items-center group" aria-label="Read more about monthly close checklist">Read More<i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></button>
+          </div>
+        </article>
+
+        <!-- Post 5 -->
+        <article class="blog-post blog-card bg-white rounded-xl shadow-md overflow-hidden" data-category="Estate Planning" data-id="5">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1200&auto=format&fit=crop" alt="Estate planning documents and pen on wooden desk" class="w-full h-48 object-cover"/>
+            <div class="absolute top-4 left-4"><span class="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Estate Planning</span></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-sm text-gray-500 mb-3"><span>Rohan Kulkarni</span><span class="mx-2">•</span><span>Jan 12, 2024</span><span class="mx-2">•</span><span>10 min read</span></div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Will vs. Trust: What’s Right for Your Family?</h3>
+            <p class="text-gray-600 mb-4">Understand probate, guardianship, and tax impact so you can choose the right structure with confidence.</p>
+            <button class="read-more-btn text-blue-600 font-semibold flex items-center group" aria-label="Read more about wills vs trusts">Read More<i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></button>
+          </div>
+        </article>
+
+        <!-- Post 6 -->
+        <article class="blog-post blog-card bg-white rounded-xl shadow-md overflow-hidden" data-category="Business Tax" data-id="6">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1554224155-1696413568cc?q=80&w=1200&auto=format&fit=crop" alt="Corporate tax planning chart on a tablet" class="w-full h-48 object-cover"/>
+            <div class="absolute top-4 left-4"><span class="bg-green-700 text-white px-3 py-1 rounded-full text-xs font-semibold">Business Tax</span></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-sm text-gray-500 mb-3"><span>Niharika Bose</span><span class="mx-2">•</span><span>Dec 18, 2023</span><span class="mx-2">•</span><span>8 min read</span></div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Choosing Between Presumptive Tax & Regular Books</h3>
+            <p class="text-gray-600 mb-4">Section 44AD/ADA/AE vs normal provisions—who qualifies, when to opt‑in, and the real‑world math.</p>
+            <button class="read-more-btn text-blue-600 font-semibold flex items-center group" aria-label="Read more about presumptive tax vs regular books">Read More<i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></button>
+          </div>
+        </article>
+      </div>
+
+      <!-- Pagination (static demo) -->
+      <div class="flex justify-center items-center space-x-2">
+        <button class="px-4 py-2 text-gray-500 hover:text-gray-700" disabled aria-label="Previous page"><i class="fas fa-chevron-left"></i></button>
+        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg" aria-current="page">1</button>
+        <button class="px-4 py-2 text-gray-700 hover:text-blue-600">2</button>
+        <button class="px-4 py-2 text-gray-700 hover:text-blue-600">3</button>
+        <span class="px-2 text-gray-500">...</span>
+        <button class="px-4 py-2 text-gray-700 hover:text-blue-600">10</button>
+        <button class="px-4 py-2 text-gray-500 hover:text-gray-700" aria-label="Next page"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <!-- Detail View -->
+    <section id="blog-detail" class="hidden fade-in">
+      <button id="back-button" class="mb-6 text-blue-600 hover:text-blue-800 flex items-center group" aria-label="Back to articles"><i class="fas fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i>Back to Articles</button>
+
+      <article class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <img id="detail-image" src="" alt="" class="w-full h-64 md:h-96 object-cover"/>
+        <div class="p-8">
+          <div class="flex flex-wrap items-center text-sm text-gray-500 mb-6">
+            <span id="detail-author"></span><span class="mx-2">•</span><span id="detail-date"></span><span class="mx-2">•</span><span id="detail-read-time"></span><span class="mx-2">•</span><span id="detail-category" class="px-3 py-1 rounded-full text-xs font-semibold"></span>
+          </div>
+          <h1 id="detail-title" class="text-3xl md:text-4xl font-bold text-gray-900 mb-6"></h1>
+          <div id="detail-content" class="prose max-w-none text-gray-700 mb-8"></div>
+          <div class="border-t border-gray-200 pt-6">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-4">
+                <span class="text-gray-600">Share this article:</span>
+                <div class="flex space-x-2">
+                  <a id="share-twitter" class="p-2 text-gray-600 hover:text-blue-600 transition-colors" target="_blank" rel="noopener" aria-label="Share on X/Twitter"><i class="fab fa-twitter"></i></a>
+                  <a id="share-linkedin" class="p-2 text-gray-600 hover:text-blue-800 transition-colors" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                  <button id="share-copy" class="p-2 text-gray-600 hover:text-gray-900 transition-colors" aria-label="Copy link"><i class="far fa-copy"></i></button>
+                </div>
+              </div>
+              <button class="text-blue-600 hover:text-blue-800" aria-label="Save article"><i class="far fa-bookmark mr-2"></i>Save</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Related -->
+      <div class="mt-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Related Articles</h2>
+        <div id="related" class="grid md:grid-cols-2 gap-6"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="max-w-7xl mx-auto px-6 py-12 bg-[#0c1524] text-[#a0aec0] mt-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Trusqual Books</h3>
+        <p class="text-[#a0aec0] text-sm leading-relaxed max-w-[280px]">Providing trusted accounting and tax services for over 25 years. Your financial success is our priority.</p>
+        <div class="flex space-x-3 mt-4 text-[#a0aec0] text-lg">
+          <a href="#" aria-label="Twitter" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn" class="hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="GitHub" class="hover:text-white"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#top" class="font-semibold hover:text-white">Home</a></li>
+          <li><a href="#about" class="font-semibold hover:text-white">About Us</a></li>
+          <li><a href="#services" class="font-semibold hover:text-white">Services</a></li>
+          <li><a href="#" class="font-semibold hover:text-white">Blog</a></li>
+          <li><a href="#contact" class="font-semibold hover:text-white">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Services</h3>
+        <ul class="space-y-2 text-sm">
+          <li>Tax Preparation</li>
+          <li>Bookkeeping</li>
+          <li>Business Consulting</li>
+          <li>Audit & Assurance</li>
+          <li>Payroll Services</li>
+          <li>Financial Planning</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-3 text-base">Contact Info</h3>
+        <ul class="space-y-3 text-sm text-[#a0aec0]">
+          <li class="flex items-center space-x-2"><i class="fas fa-map-marker-alt text-[#a0aec0]"></i><span>123 Business Plaza, Suite 456</span></li>
+          <li class="flex items-center space-x-2"><i class="fas fa-phone-alt text-[#a0aec0]"></i><a href="tel:+919586545067" class="hover:text-white">+91 9586545067</a></li>
+          <li class="flex items-center space-x-2"><i class="fas fa-envelope text-[#a0aec0]"></i><a href="mailto:meet@trusqualbooks.com" class="hover:text-white">meet@trusqualbooks.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="border-t border-[#1f2937] mb-6" />
+    <div class="flex flex-col sm:flex-row justify-between text-xs text-[#a0aec0]">
+      <div>© 2025 Trusqual Books. All rights reserved.</div>
+      <div class="flex space-x-6 mt-3 sm:mt-0">
+        <a href="#" class="hover:text-white">Privacy Policy</a>
+        <a href="#" class="hover:text-white">Terms of Service</a>
+        <a href="#" class="hover:text-white">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Data & Scripts -->
+  <script>
+    // ----- Data: realistic article content -----
+    const blogPosts = {
+      1: {
+        id: 1,
+        title: "FY 2024–25: Last‑Minute Tax Moves Before 31 March",
+        author: "Priya Shah, CPA",
+        date: "Apr 05, 2024",
+        readTime: "7 min read",
+        category: "Tax Planning",
+        categoryColor: "bg-blue-600",
+        image: "https://images.unsplash.com/photo-1554224155-3a5898774627?q=80&w=1600&auto=format&fit=crop",
+        content: `
+          <p class="text-lg leading-relaxed mb-4">The last week of March often decides how efficient your total tax outgo will be. Here are practical actions individuals and owners of small companies can still take—without risky schemes.</p>
+          <h2 class="text-2xl font-semibold mt-8 mb-3">Max Your Section 80C—Smartly</h2>
+          <ul class="list-disc ml-5 mb-4">
+            <li>Prioritize EPF/PPF and ELSS. Avoid locking cash in low‑yield policies just to save tax.</li>
+            <li>Record proof uploads (rent receipts, tuition, principal) in your HR portal before the cut‑off.</li>
+          </ul>
+          <h2 class="text-2xl font-semibold mt-6 mb-3">Use Loss Set‑Off for Capital Gains</h2>
+          <p class="mb-4">Booked equity losses can offset equity gains. Review your portfolio statements and harvest losses (where it fits your plan) before 31 March.</p>
+          <h2 class="text-2xl font-semibold mt-6 mb-3">Health Insurance & HRA Hygiene</h2>
+          <p class="mb-4">Ensure premiums are paid via banking channels to claim Section 80D. For HRA, verify PAN of landlord and rent proofs are aligned with bank transfers.</p>
+          <blockquote class="border-l-4 border-blue-600 pl-4 italic text-gray-600 my-6">“Good tax planning is about timing and documentation—not last‑minute panic.”</blockquote>
+          <p>When in doubt, document first, decide second. A clear paper trail is your best defence during scrutiny.</p>
+        `,
+      },
+      2: {
+        id: 2,
+        title: "GST Health Check: 8 Red Flags That Trigger Notices",
+        author: "Arun Mehta",
+        date: "Mar 12, 2024",
+        readTime: "9 min read",
+        category: "Business Tax",
+        categoryColor: "bg-green-600",
+        image: "https://images.unsplash.com/photo-1551281044-8b5e5972c66a?q=80&w=1600&auto=format&fit=crop",
+        content: `
+          <p class="text-lg leading-relaxed mb-4">Routine self‑audits drastically reduce GST risk. Use these eight checks monthly.</p>
+          <ol class="list-decimal ml-5 mb-4">
+            <li><strong>GSTR‑1 vs 3B mismatches</strong>: Variances beyond tolerance invite automated queries.</li>
+            <li><strong>ITC recon with GSTR‑2B</strong>: Flag vendors who do not upload invoices on time.</li>
+            <li><strong>E‑invoice gaps</strong>: Missed e‑invoicing where threshold applies.</li>
+            <li><strong>Place of supply errors</strong>: Interstate vs intrastate mix‑ups.</li>
+          </ol>
+          <p>Build a dashboard to track these four and you’ll avoid 80% of common issues.</p>
+        `,
+      },
+      3: {
+        id: 3,
+        title: "Goal‑Based Investing: A Simple Framework That Works",
+        author: "Anita Nair, CFP®",
+        date: "Feb 20, 2024",
+        readTime: "8 min read",
+        category: "Financial Planning",
+        categoryColor: "bg-purple-600",
+        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop",
+        content: `
+          <p class="text-lg leading-relaxed mb-4">Map every rupee to a goal and timeline. That single habit improves returns and behaviour.</p>
+          <h3 class="text-xl font-semibold mb-2">Three Buckets</h3>
+          <ul class="list-disc ml-5 mb-4">
+            <li>Emergency (6–9 months expenses): liquid funds.</li>
+            <li>Short‑term (1–3 yrs): low‑duration debt, RDs.</li>
+            <li>Long‑term (5+ yrs): equity index funds, PF/PPF.</li>
+          </ul>
+          <p>Rebalance annually to the target mix—don’t let markets change your plan.</p>
+        `,
+      },
+      4: {
+        id: 4,
+        title: "Monthly Close Checklist for Small Businesses",
+        author: "Megha Rao",
+        date: "Jan 28, 2024",
+        readTime: "6 min read",
+        category: "Bookkeeping",
+        categoryColor: "bg-yellow-600",
+        image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop",
+        content: `
+          <p class="mb-4">A crisp close prevents year‑end chaos. Follow this order every month.</p>
+          <ul class="list-disc ml-5 mb-4">
+            <li>Bank and card reconciliations</li>
+            <li>Accruals & deferrals</li>
+            <li>AR/AP ageing review</li>
+            <li>Inventory and fixed‑asset updates</li>
+          </ul>
+          <p>Lock the period once reviewed to avoid back‑dated edits.</p>
+        `,
+      },
+      5: {
+        id: 5,
+        title: "Will vs. Trust: What’s Right for Your Family?",
+        author: "Rohan Kulkarni",
+        date: "Jan 12, 2024",
+        readTime: "10 min read",
+        category: "Estate Planning",
+        categoryColor: "bg-red-600",
+        image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1600&auto=format&fit=crop",
+        content: `
+          <p class="mb-4">Both wills and trusts pass assets, but with very different timelines, privacy, and tax outcomes.</p>
+          <h3 class="text-xl font-semibold mb-2">When a Will is Enough</h3>
+          <p class="mb-4">Simple estates, few beneficiaries, minimal property in multiple states.</p>
+          <h3 class="text-xl font-semibold mb-2">When to Consider a Trust</h3>
+          <p>Complex assets, minors as beneficiaries, or when you want distribution rules and privacy.</p>
+        `,
+      },
+      6: {
+        id: 6,
+        title: "Choosing Between Presumptive Tax & Regular Books",
+        author: "Niharika Bose",
+        date: "Dec 18, 2023",
+        readTime: "8 min read",
+        category: "Business Tax",
+        categoryColor: "bg-green-700",
+        image: "https://images.unsplash.com/photo-1554224155-1696413568cc?q=80&w=1600&auto=format&fit=crop",
+        content: `
+          <p class="mb-4">Presumptive schemes cut compliance but can inflate taxes if margins are thin. Run the math before opting in.</p>
+          <ul class="list-disc ml-5 mb-4">
+            <li>44AD (traders) / 44ADA (professionals) / 44AE (transport)</li>
+            <li>Consider books if actual profit < presumptive % by a big margin</li>
+            <li>Remember 5‑year lock‑in implications</li>
+          </ul>
+        `,
+      },
+    };
+
+    // ----- Utilities -----
+    const $ = (s, root=document) => root.querySelector(s);
+    const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
+
+    // ----- Mobile menu -----
+    const menu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('overlay');
+    const menuToggle = document.getElementById('menu-toggle');
+
+    function toggleMenu(force) {
+      const willOpen = typeof force === 'boolean' ? force : !menu.classList.contains('open');
+      menu.classList.toggle('open', willOpen);
+      overlay.classList.toggle('open', willOpen);
+      document.body.style.overflow = willOpen ? 'hidden' : '';
+      if (menuToggle) menuToggle.setAttribute('aria-expanded', String(willOpen));
+      menu.setAttribute('aria-hidden', String(!willOpen));
+      overlay.setAttribute('aria-hidden', String(!willOpen));
+    }
+
+    menuToggle.addEventListener('click', () => toggleMenu());
+    overlay.addEventListener('click', () => toggleMenu(false));
+    $$('.mobile-link', menu).forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+    document.addEventListener('click', (e) => {
+      if (!menu.classList.contains('open')) return;
+      if (!menu.contains(e.target) && !menuToggle.contains(e.target)) toggleMenu(false);
+    });
+
+    // ----- Filtering -----
+    function applyFilter(category) {
+      const buttons = $$('.filter-btn');
+      buttons.forEach(btn => {
+        const isActive = (btn.dataset.filter === category) || (category === 'all' && btn.dataset.filter === 'all');
+        btn.classList.toggle('bg-[#030319]', isActive);
+        btn.classList.toggle('text-white', isActive);
+        btn.classList.toggle('border', !isActive);
+        btn.classList.toggle('border-gray-300', !isActive);
+        btn.classList.toggle('text-gray-800', !isActive);
+        btn.classList.toggle('hover:bg-gray-100', !isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+
+      $$('.blog-post').forEach(post => {
+        if (category === 'all' || post.dataset.category === category) {
+          post.style.display = '';
+        } else {
+          post.style.display = 'none';
+        }
+      });
+    }
+
+    $$('.filter-btn').forEach(btn => btn.addEventListener('click', () => applyFilter(btn.dataset.filter)));
+
+    // ----- Listing -> Detail navigation -----
+    const listing = document.getElementById('blog-listing');
+    const detail = document.getElementById('blog-detail');
+
+    function showBlogPost(id) {
+      const post = blogPosts[id];
+      if (!post) return;
+      // Fill detail
+      $('#detail-image').src = post.image;
+      $('#detail-image').alt = post.title;
+      $('#detail-author').textContent = post.author;
+      $('#detail-date').textContent = post.date;
+      $('#detail-read-time').textContent = post.readTime;
+      $('#detail-title').textContent = post.title;
+      $('#detail-content').innerHTML = post.content;
+
+      const catEl = $('#detail-category');
+      catEl.textContent = post.category;
+      catEl.className = `${post.categoryColor} text-white px-3 py-1 rounded-full text-xs font-semibold`;
+
+      // Social share links (simple demo using location + hash)
+      const url = `${location.origin}${location.pathname}#post-${id}`;
+      $('#share-twitter').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(post.title)}`;
+      $('#share-linkedin').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+      $('#share-copy').onclick = async () => {
+        try { await navigator.clipboard.writeText(url); alert('Link copied!'); } catch(e) { console.log(e); }
+      };
+
+      // Toggle views
+      listing.classList.add('hidden');
+      detail.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Update hash for deep-linking
+      history.replaceState(null, '', `#post-${id}`);
+
+      // Build related (same category, different posts)
+      const relatedRoot = document.getElementById('related');
+      relatedRoot.innerHTML = '';
+      Object.values(blogPosts)
+        .filter(p => p.id !== id && (p.category === post.category || Math.abs(p.id - id) <= 2))
+        .slice(0, 4)
+        .forEach(p => {
+          const card = document.createElement('a');
+          card.href = `#post-${p.id}`;
+          card.className = 'bg-white rounded-lg shadow-md p-4 flex items-center hover:shadow-lg transition';
+          card.innerHTML = `
+            <img src="${p.image}" alt="${p.title}" class="w-16 h-16 object-cover rounded-lg mr-4"/>
+            <div><h3 class="font-semibold text-gray-900 mb-1">${p.title}</h3><p class="text-sm text-gray-600">${p.readTime}</p></div>
+          `;
+          card.addEventListener('click', (e) => { e.preventDefault(); showBlogPost(p.id); });
+          relatedRoot.appendChild(card);
+        });
+    }
+
+    function showBlogListing() {
+      detail.classList.add('hidden');
+      listing.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.replaceState(null, '', '#');
+    }
+
+    // Bind read-more buttons
+    $$('.blog-post .read-more-btn').forEach(btn => {
+      const card = btn.closest('.blog-post');
+      btn.addEventListener('click', () => showBlogPost(Number(card.dataset.id)));
+    });
+
+    // Back button
+    document.getElementById('back-button').addEventListener('click', showBlogListing);
+
+    // Deep-link on load if hash like #post-3
+    window.addEventListener('DOMContentLoaded', () => {
+      const match = location.hash.match(/#post-(\d+)/);
+      if (match) {
+        const id = Number(match[1]);
+        if (blogPosts[id]) showBlogPost(id);
+      }
+    });
+  </script>
+</body>
+</html>

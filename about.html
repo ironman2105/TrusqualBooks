@@ -8,37 +8,35 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
   />
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
    <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
     body {
       font-family: 'Inter', sans-serif;
     }
-
+    
+        /* Existing review-card styles already have transitions */
     .review-card {
       transition: all 0.3s ease;
       border-left: 4px solid transparent;
     }
-    
     .review-card:hover {
       transform: translateY(-5px);
       border-left-color: #2B4EA1;
       box-shadow: 0 10px 30px rgba(43, 78, 161, 0.1);
     }
-    
     .quote-icon {
       opacity: 0.1;
       transition: opacity 0.3s ease;
     }
-    
     .review-card:hover .quote-icon {
       opacity: 0.3;
     }
-    
     .rating-star {
       color: #FFD700;
       text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
     }
-
     
     .mobile-menu {
       position: fixed;
@@ -127,7 +125,7 @@
     </div>
   </div>
    
-  <nav class="flex justify-between items-center px-6 py-6 md:px-24">
+  <nav class="flex justify-between items-center px-6 py-6 md:px-24"data-aos="fade-down">
     <div class="text-black font-semibold text-lg">Trusqual Books</div>
     <div class="md:hidden">
       <button id="menu-toggle" class="text-black focus:outline-none" onclick="toggleMenu()">
@@ -146,19 +144,19 @@
   </nav>
   
   <main class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
-   <section class="text-center max-w-3xl mx-auto mb-16">
+   <section class="text-center max-w-3xl mx-auto mb-16" data-aos="zoom-in">
     <h1 class="text-2xl font-normal mb-4">
      About Trusqual Books
     </h1>
     <p class="text-gray-600 text-base leading-relaxed">
-     With over 25 years of experience, Sterling CPA has been providing
+     With over 25 years of experience, TrusQualBooks has been providing
         trusted accounting and tax services to individuals and businesses
         throughout the region.
     </p>
    </section>
    <section class="flex flex-col lg:flex-row lg:space-x-16 items-center lg:items-start max-w-7xl mx-auto">
-    <div class="lg:w-1/2 text-left mb-10 lg:mb-0">
-     <h2 class="text-lg font-semibold mb-4">
+    <div class="lg:w-1/2 text-left mb-10 lg:mb-0" data-aos="fade-right">
+     <h2 class="text-lg font-semibold mb-4" data-aos="fade-up">
       Our Story
      </h2>
      <p class="text-gray-700 mb-6 leading-relaxed">
@@ -173,7 +171,7 @@
           unique situation and provide strategies that align with your goals.
      </p>
     </div>
-    <div class="lg:w-1/3">
+    <div class="lg:w-1/3" data-aos="fade-left">
      <img alt="Modern office interior hallway with black framed glass walls, gray ceiling with lights, and black kitchen appliances on the right" class="rounded-lg w-full object-cover" height="350" src="https://storage.googleapis.com/a1aa/image/639c6219-06f8-4fcb-8df6-305d9d3fe9bb.jpg" width="600"/>
     </div>
    </section>
@@ -181,7 +179,7 @@
 
 <!--team-->
 
-<section class="max-w-7xl mx-auto px-6 py-12">
+<section class="max-w-7xl mx-auto px-6 py-12" data-aos="fade-up">
    <h2 class="text-xl font-normal mb-2 text-center">
     Our Team
    </h2>
@@ -189,7 +187,7 @@
     Meet the experienced professionals dedicated to your financial success.
    </p>
    <div class="flex flex-col sm:flex-row justify-center gap-8">
-    <article class="border border-gray-200 rounded-xl p-6 max-w-xs mx-auto sm:mx-0 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:-translate-y-1">
+    <article class="border border-gray-200 rounded-xl p-6 max-w-xs mx-auto sm:mx-0 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:-translate-y-1" data-aos="fade-up">
      <img alt="Portrait of Michael Sterling, a man with short black hair and a white shirt smiling" class="w-30 h-30 rounded-full mx-auto mb-4 object-cover" height="120" src="https://storage.googleapis.com/a1aa/image/5dad3f74-84fb-4ac1-7cf0-7241da542938.jpg" width="120"/>
      <h3 class="font-semibold text-black mb-1 text-center">
       Meet Agarwal
@@ -206,7 +204,7 @@
           University.
      </p>
     </article>
-    <article class="border border-gray-200 rounded-xl p-6 max-w-xs mx-auto sm:mx-0 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:-translate-y-1">
+    <article class="border border-gray-200 rounded-xl p-6 max-w-xs mx-auto sm:mx-0 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
      <img alt="Placeholder image icon in a light gray circle representing Sarah Johnson" class="w-30 h-30 rounded-full mx-auto mb-4 object-contain bg-gray-100 p-6" height="120" src="https://storage.googleapis.com/a1aa/image/4433f59e-a82a-4852-65b2-31e4cf132166.jpg" width="120"/>
      <h3 class="font-normal text-black mb-1 text-center">
       Mansi Agarwal
@@ -223,7 +221,7 @@
           growth strategies.
      </p>
     </article>
-    <article class="border border-gray-200 rounded-xl p-6 max-w-xs mx-auto sm:mx-0 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:-translate-y-1">
+    <article class="border border-gray-200 rounded-xl p-6 max-w-xs mx-auto sm:mx-0 shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
      <img alt="Portrait of Robert Chen, a man with short gray hair and glasses wearing a dark green polo shirt" class="w-30 h-30 rounded-full mx-auto mb-4 object-cover" height="120" src="https://storage.googleapis.com/a1aa/image/a20da528-2886-4ed5-6f79-9413d63a00dc.jpg" width="120"/>
      <h3 class="font-semibold text-black mb-1 text-center">
       Vedraj Agarwal
@@ -245,14 +243,14 @@
 
   <!--achievements-->
 
-   <div class="max-w-7xl mx-auto px-4 py-16 text-center">
+   <div class="max-w-7xl mx-auto px-4 py-16 text-center" data-aos="fade-up">
     <span
       class="inline-block bg-[#2B4EA1] text-white text-xs font-semibold rounded-full px-3 py-1 mb-4"
       >Recognition</span
     >
     <h2 class="text-[#1A1A1A] text-2xl font-normal mb-16">Awards & Achievements</h2>
     <div class="flex flex-col sm:flex-row justify-center gap-20">
-      <div class="flex flex-col items-center max-w-xs">
+      <div class="flex flex-col items-center max-w-xs" data-aos="fade-up" data-aos-delay="100">
         <div
           class="w-20 h-20 rounded-full bg-gradient-to-b from-[#4F6CC9] to-[#B9C6F2] flex items-center justify-center mb-6"
         >
@@ -262,7 +260,7 @@
         <p class="text-[#6B7280] text-sm">State Business Journal</p>
         <p class="text-[#2B4EA1] text-sm font-semibold mt-1">2023</p>
       </div>
-      <div class="flex flex-col items-center max-w-xs">
+      <div class="flex flex-col items-center max-w-xs" data-aos="fade-up" data-aos-delay="200">
         <div
           class="w-20 h-20 rounded-full bg-gradient-to-b from-[#4F6CC9] to-[#B9C6F2] flex items-center justify-center mb-6"
         >
@@ -272,7 +270,7 @@
         <p class="text-[#6B7280] text-sm">CPA Association</p>
         <p class="text-[#2B4EA1] text-sm font-semibold mt-1">2022</p>
       </div>
-      <div class="flex flex-col items-center max-w-xs">
+      <div class="flex flex-col items-center max-w-xs" data-aos="fade-up" data-aos-delay="300">
         <div
           class="w-20 h-20 rounded-full bg-gradient-to-b from-[#4F6CC9] to-[#B9C6F2] flex items-center justify-center mb-6"
         >
@@ -286,10 +284,10 @@
 </div>
 
 
- <main class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
+ <main class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12" data-aos="fade-up">
     <!-- Client Reviews Section -->
     <section class="py-16">
-      <div class="text-center mb-16">
+      <div class="text-center mb-16" data-aos="zoom-in">
         <span class="inline-block bg-[#2B4EA1] text-white text-xs font-semibold rounded-full px-4 py-2 mb-4">
           Client Testimonials
         </span>
@@ -304,7 +302,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
         <!-- Review 1 -->
-        <div class="review-card bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
+        <div class="review-card bg-white rounded-xl p-8 border border-gray-100 shadow-sm" data-aos="fade-up">
           <div class="quote-icon text-6xl text-[#2B4EA1] mb-4">
             <i class="fas fa-quote-left"></i>
           </div>
@@ -330,7 +328,7 @@
         </div>
 
         <!-- Review 2 -->
-        <div class="review-card bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
+        <div class="review-card bg-white rounded-xl p-8 border border-gray-100 shadow-sm" data-aos="fade-up" data-aos-delay="100">
           <div class="quote-icon text-6xl text-[#2B4EA1] mb-4">
             <i class="fas fa-quote-left"></i>
           </div>
@@ -342,7 +340,7 @@
             <i class="fas fa-star-half-alt rating-star"></i>
           </div>
           <p class="text-gray-700 mb-6 leading-relaxed">
-            "As a small business owner, finding reliable accounting was challenging until I found Sterling CPA. They handle everything with precision and care. Highly recommended!"
+            "As a small business owner, finding reliable accounting was challenging until I found TrusQualBooks. They handle everything with precision and care. Highly recommended!"
           </p>
           <div class="flex items-center">
             <img src="https://storage.googleapis.com/a1aa/image/4433f59e-a82a-4852-65b2-31e4cf132166.jpg" 
@@ -356,7 +354,7 @@
         </div>
 
         <!-- Review 3 -->
-        <div class="review-card bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
+        <div class="review-card bg-white rounded-xl p-8 border border-gray-100 shadow-sm" data-aos="fade-up" data-aos-delay="200">
           <div class="quote-icon text-6xl text-[#2B4EA1] mb-4">
             <i class="fas fa-quote-left"></i>
           </div>
@@ -368,7 +366,7 @@
             <i class="fas fa-star rating-star"></i>
           </div>
           <p class="text-gray-700 mb-6 leading-relaxed">
-            "The audit process was seamless thanks to Sterling CPA. Their attention to detail and thorough approach gave us complete confidence in our financial reporting."
+            "The audit process was seamless thanks to TrusQualBooks. Their attention to detail and thorough approach gave us complete confidence in our financial reporting."
           </p>
           <div class="flex items-center">
             <img src="https://storage.googleapis.com/a1aa/image/a20da528-2886-4ed5-6f79-9413d63a00dc.jpg" 
@@ -386,9 +384,9 @@
 
 <!-- footer-->
 
-   <footer class="max-w-7xl mx-auto px-6 py-12 bg-[#0c1524] text-[#a0aec0] m-0 p-0">
+   <footer class="max-w-7xl mx-auto px-6 py-12 bg-[#0c1524] text-[#a0aec0] m-0 p-0" data-aos="fade-up">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10">
-      <div>
+      <div data-aos="fade-up">
         <h3 class="text-white font-semibold mb-3 text-base">Trusqual Books</h3>
         <p class="text-[#a0aec0] text-sm leading-relaxed max-w-[280px]">
           Providing trusted accounting and tax services for over 25 years. Your financial success is our priority.
@@ -399,7 +397,7 @@
           <a href="#" aria-label="LinkedIn" class="hover:text-white"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
-      <div>
+      <div data-aos="fade-up" data-aos-delay="100">
         <h3 class="text-white font-semibold mb-3 text-base">Quick Links</h3>
         <ul class="space-y-2 text-sm">
           <li><a href="index.html" class="font-semibold hover:text-white">Home</a></li>
@@ -409,7 +407,7 @@
           <li><a href="contact.html" class="font-semibold hover:text-white">Contact Us</a></li>
         </ul>
       </div>
-      <div>
+      <div data-aos="fade-up" data-aos-delay="200">
         <h3 class="text-[#a0aec0] mb-3 text-sm">Services</h3>
         <ul class="space-y-2 text-sm">
           <li>Tax Preparation</li>
@@ -420,7 +418,7 @@
           <li>Financial Planning</li>
         </ul>
       </div>
-      <div>
+      <div data-aos="fade-up" data-aos-delay="300">
         <h3 class="text-white font-semibold mb-3 text-base">Contact Info</h3>
         <ul class="space-y-3 text-sm text-[#a0aec0]">
           <li class="flex items-center space-x-2">
@@ -450,6 +448,8 @@
       </div>
     </div>
   </footer>
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
  <script>
     function toggleMenu() {
       const menu = document.getElementById('mobile-menu');
@@ -474,6 +474,16 @@
         toggleMenu();
       }
     });
+
+
+     AOS.init({ duration: 1000, once: true });
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('overlay');
+      menu.classList.toggle('open');
+      overlay.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
   </script>
  
  </body>

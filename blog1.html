@@ -13,6 +13,7 @@
   <style>
    body {
       font-family: "Inter", sans-serif;
+      position: relative; /* Needed for scroll progress bar */
     }
     
     .mobile-menu {
@@ -69,6 +70,8 @@
         opacity: 0;
         transform: translateY(20px);
         transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+        position: relative; /* For image overlay */
+        overflow: hidden; /* Ensure overlay doesn't spill */
     }
     .blog-card.show {
         opacity: 1;
@@ -78,11 +81,26 @@
         transform: translateY(-5px);
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
+    .blog-card .relative::before { /* Image overlay */
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0);
+        transition: background 0.3s ease;
+        z-index: 1; /* Above image, below text */
+    }
+    .blog-card:hover .relative::before {
+        background: rgba(0, 0, 0, 0.1); /* Darken image slightly on hover */
+    }
+
     .read-more-btn {
         transition: all 0.3s ease;
     }
     .read-more-btn:hover .fa-arrow-right {
-        transform: translateX(5px);
+        transform: translateX(8px); /* More pronounced arrow animation */
     }
 
     /* Fade-in section animation */
@@ -94,6 +112,24 @@
     .fade-in-section.show {
         opacity: 1;
         transform: translateY(0);
+    }
+
+    /* Filter Button Active State Animation */
+    .filter-btn.active {
+        transform: scale(1.05); /* Slightly larger when active */
+        transition: transform 0.2s ease-in-out;
+    }
+
+    /* Scroll Progress Bar */
+    #scroll-progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background-color: #2563eb; /* Blue-600 */
+        z-index: 1000;
+        transition: width 0.1s linear;
     }
 
     /* Responsive adjustments for filter buttons */
@@ -109,6 +145,7 @@
   </style>
  </head>
  <body class="bg-white text-black">
+  <div id="scroll-progress-bar"></div> <!-- Scroll Progress Bar -->
   <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
   
   <!-- Mobile Menu -->
@@ -146,7 +183,7 @@
   </div>
    
   <nav class="flex justify-between items-center px-6 py-6 md:px-24" data-aos="fade-down">
-    <div class="text-black font-semibold text-lg">TrusQualBooks</div>
+    <div class="text-black font-semibold text-lg">Sterling CPA</div>
     <div class="md:hidden">
       <button id="menu-toggle" class="text-black focus:outline-none" onclick="toggleMenu()">
         <i class="fas fa-bars fa-lg"></i>
@@ -172,22 +209,22 @@
       advice from our team of certified public accountants.
    </p>
    <nav class="flex justify-center space-x-3 mb-12 flex-wrap fade-in-section">
-    <button id="filter-all" class="bg-[#030319] text-white rounded-md px-4 py-2 font-semibold text-sm" onclick="filterPosts('all')">
+    <button id="filter-all" class="filter-btn bg-[#030319] text-white rounded-md px-4 py-2 font-semibold text-sm active" onclick="filterPosts('all')">
      All
     </button>
-    <button id="filter-tax-planning" class="border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" onclick="filterPosts('Tax Planning')">
+    <button id="filter-tax-planning" class="filter-btn border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" onclick="filterPosts('Tax Planning')">
      Tax Planning
     </button>
-    <button id="filter-business-tax" class="border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" onclick="filterPosts('Business Tax')">
+    <button id="filter-business-tax" class="filter-btn border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" onclick="filterPosts('Business Tax')">
      Business Tax
     </button>
-    <button id="filter-financial-planning" class="border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" onclick="filterPosts('Financial Planning')">
+    <button id="filter-financial-planning" class="filter-btn border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" onclick="filterPosts('Financial Planning')">
      Financial Planning
     </button>
-    <button id="filter-bookkeeping" class="border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" onclick="filterPosts('Bookkeeping')">
+    <button id="filter-bookkeeping" class="filter-btn border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" onclick="filterPosts('Bookkeeping')">
      Bookkeeping
     </button>
-    <button id="filter-estate-planning" class="border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" onclick="filterPosts('Estate Planning')">
+    <button id="filter-estate-planning" class="filter-btn border border-gray-300 rounded-md px-4 py-2 text-sm text-gray-800 hover:bg-gray-100" onclick="filterPosts('Estate Planning')">
      Estate Planning
     </button>
    </nav>
@@ -198,7 +235,7 @@
                 <!-- Blog Post 1 -->
                 <article class="blog-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="relative">
-                        <img src="https://storage.googleapis.com/a1aa/image/5b4fb945-29f2-48b0-ff7b-10007822fdf4.jpg" alt="Person holding tax documents and calculator on white wooden floor" class="w-full h-48 object-cover">
+                        <img src="https://storage.googleapis.com/a1aa/image/5b4fb945-29f2-48b0-ff7b-10007822fdf4.jpg" alt="Person holding tax documents and calculator on white wooden floor, representing tax planning" class="w-full h-48 object-cover">
                         <div class="absolute top-4 left-4">
                             <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Tax Planning</span>
                         </div>
@@ -225,7 +262,7 @@
                 <!-- Blog Post 2 -->
                 <article class="blog-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="relative">
-                        <img src="https://storage.googleapis.com/a1aa/image/8b2ab5ea-4dae-46c8-b1ab-7698f6e36c25.jpg" alt="Smiling man headshot with gray background" class="w-full h-48 object-cover">
+                        <img src="https://storage.googleapis.com/a1aa/image/8b2ab5ea-4dae-46c8-b1ab-7698f6e36c25.jpg" alt="Smiling man headshot with gray background, representing business tax advice" class="w-full h-48 object-cover">
                         <div class="absolute top-4 left-4">
                             <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Business Tax</span>
                         </div>
@@ -252,7 +289,7 @@
                 <!-- Blog Post 3 -->
                 <article class="blog-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="relative">
-                        <img src="https://storage.googleapis.com/a1aa/image/5ad14495-f35d-4915-d081-6212db348fb4.jpg" alt="Person pointing at laptop screen with financial planning dashboard" class="w-full h-48 object-cover">
+                        <img src="https://storage.googleapis.com/a1aa/image/5ad14495-f35d-4915-d081-6212db348fb4.jpg" alt="Person pointing at laptop screen with financial planning dashboard, symbolizing financial planning" class="w-full h-48 object-cover">
                         <div class="absolute top-4 left-4">
                             <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Financial Planning</span>
                         </div>
@@ -279,7 +316,7 @@
                 <!-- Blog Post 4 -->
                 <article class="blog-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="relative">
-                        <img src="https://storage.googleapis.com/a1aa/image/17c451e1-1d2c-4118-0c96-443e9850abb9.jpg" alt="Open laptop showing bookkeeping dashboard on table" class="w-full h-48 object-cover">
+                        <img src="https://storage.googleapis.com/a1aa/image/17c451e1-1d2c-4118-0c96-443e9850abb9.jpg" alt="Open laptop showing bookkeeping dashboard on table, representing bookkeeping practices" class="w-full h-48 object-cover">
                         <div class="absolute top-4 left-4">
                             <span class="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Bookkeeping</span>
                         </div>
@@ -306,7 +343,7 @@
                 <!-- Blog Post 5 -->
                 <article class="blog-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="relative">
-                        <img src="https://storage.googleapis.com/a1aa/image/91e364e5-896c-4b50-2ff1-54c9796966f1.jpg" alt="Blackboard with white mathematical formulas and diagrams" class="w-full h-48 object-cover">
+                        <img src="https://storage.googleapis.com/a1aa/image/91e364e5-896c-4b50-2ff1-54c9796966f1.jpg" alt="Blackboard with white mathematical formulas and diagrams, representing tax calculations" class="w-full h-48 object-cover">
                         <div class="absolute top-4 left-4">
                             <span class="bg-yellow-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Tax Planning</span>
                         </div>
@@ -333,7 +370,7 @@
                 <!-- Blog Post 6 -->
                 <article class="blog-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="relative">
-                        <img src="https://storage.googleapis.com/a1aa/image/53338079-ca01-4214-efef-b777a24b2be4.jpg" alt="Person signing documents with pen on desk" class="w-full h-48 object-cover">
+                        <img src="https://storage.googleapis.com/a1aa/image/53338079-ca01-4214-efef-b777a24b2be4.jpg" alt="Person signing documents with pen on desk, representing estate planning" class="w-full h-48 object-cover">
                         <div class="absolute top-4 left-4">
                             <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Estate Planning</span>
                         </div>
@@ -382,7 +419,7 @@
             </button>
 
             <article class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <img src="https://storage.googleapis.com/a1aa/image/5b4fb945-29f2-48b0-ff7b-10007822fdf4.jpg" alt="Blog Detail Image" class="w-full h-64 md:h-96 object-cover" id="detail-image">
+                <img src="https://storage.googleapis.com/a1aa/image/5b4fb945-29f2-48b0-ff7b-10007822fdf4.jpg" alt="Detailed image for blog post" class="w-full h-64 md:h-96 object-cover" id="detail-image">
                 
                 <div class="p-8">
                     <div class="flex flex-wrap items-center text-sm text-gray-500 mb-6">
@@ -430,14 +467,14 @@
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Related Articles</h2>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
-                        <img src="https://via.placeholder.com/64x64" alt="Related Article 1" class="w-16 h-16 object-cover rounded-lg mr-4">
+                        <img src="https://via.placeholder.com/64x64" alt="Related Article 1 thumbnail" class="w-16 h-16 object-cover rounded-lg mr-4">
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-1">Related Article Title 1</h3>
                             <p class="text-sm text-gray-600">5 min read</p>
                         </div>
                     </div>
                     <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
-                        <img src="https://via.placeholder.com/64x64" alt="Related Article 2" class="w-16 h-16 object-cover rounded-lg mr-4">
+                        <img src="https://via.placeholder.com/64x64" alt="Related Article 2 thumbnail" class="w-16 h-16 object-cover rounded-lg mr-4">
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-1">Related Article Title 2</h3>
                             <p class="text-sm text-gray-600">7 min read</p>
@@ -543,23 +580,16 @@
 
     function filterPosts(category) {
       const posts = document.querySelectorAll('.blog-card'); // Changed to .blog-card
-      const buttons = {
-        all: document.getElementById('filter-all'),
-        'Tax Planning': document.getElementById('filter-tax-planning'),
-        'Business Tax': document.getElementById('filter-business-tax'),
-        'Financial Planning': document.getElementById('filter-financial-planning'),
-        'Bookkeeping': document.getElementById('filter-bookkeeping'),
-        'Estate Planning': document.getElementById('filter-estate-planning'),
-      };
+      const buttons = document.querySelectorAll('.filter-btn');
 
       // Update button styles
-      Object.keys(buttons).forEach(key => {
-        if (key === category || (category === 'all' && key === 'all')) {
-          buttons[key].classList.add('bg-[#030319]', 'text-white');
-          buttons[key].classList.remove('border', 'border-gray-300', 'text-gray-800', 'hover:bg-gray-100');
+      buttons.forEach(button => {
+        if (button.id === `filter-${category}` || (category === 'all' && button.id === 'filter-all')) {
+          button.classList.add('bg-[#030319]', 'text-white', 'active');
+          button.classList.remove('border', 'border-gray-300', 'text-gray-800', 'hover:bg-gray-100');
         } else {
-          buttons[key].classList.remove('bg-[#030319]', 'text-white');
-          buttons[key].classList.add('border', 'border-gray-300', 'text-gray-800', 'hover:bg-gray-100');
+          button.classList.remove('bg-[#030319]', 'text-white', 'active');
+          button.classList.add('border', 'border-gray-300', 'text-gray-800', 'hover:bg-gray-100');
         }
       });
 
@@ -723,6 +753,7 @@
 
         // Update detail page content
         document.getElementById('detail-image').src = post.image;
+        document.getElementById('detail-image').alt = post.title; /* Added alt text */
         document.getElementById('detail-author').textContent = post.author;
         document.getElementById('detail-date').textContent = post.date;
         document.getElementById('detail-read-time').textContent = post.readTime;
@@ -787,6 +818,15 @@
             });
         });
     });
+
+    // Scroll Progress Bar Logic
+    window.addEventListener('scroll', () => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (scrollTop / scrollHeight) * 100;
+        document.getElementById('scroll-progress-bar').style.width = scrolled + '%';
+    });
+
     AOS.init({ duration: 1000, once: true });
   </script>
  </body>
